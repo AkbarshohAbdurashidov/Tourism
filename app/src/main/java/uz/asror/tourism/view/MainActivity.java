@@ -1,7 +1,10 @@
 package uz.asror.tourism.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,36 +20,62 @@ import uz.asror.tourism.model.Data;
 import uz.asror.tourism.model.District;
 
 public class MainActivity extends AppCompatActivity {
+
     private ActivityMainBinding binding;
-
-    ArrayList<Data> placeData;
-    private List<String> dataList;
-    private HashMap<Integer, List<String>> spinnerDataMap; // Har bir ListView elementi uchun Spinner malumotlari
-
+    private ArrayList<Data> placeData;
+    private ListView listView;
+    private Spinner spinner;
     private ArrayAdapter<String> spinnerAdapter;
-    Spinner spinner;
+    private List<String> dataList;
+    private HashMap<String, List<String>> regionDistrictMap;
+    private HashMap<Integer, List<String>> spinnerDataMap;
+
+    List<District> districts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadPlaces();
-        dataList = generateData();
-
-        // Har bir ListView elementi uchun Spinner malumotlarini tayyorlash
+        dataList =  generateData();
         spinnerDataMap = generateSpinnerData();
 
 
+        // Set up ArrayAdapter for the region ListView
+        ArrayAdapter<String> regionListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(regionDistrictMap.keySet()));
+        binding.listView.setAdapter(regionListAdapter);
+        PlaceAdapter placeAdapter = new PlaceAdapter(this, placeData);
+        binding.listView.setAdapter(placeAdapter);
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                placeAdapter.getItem(position);
+
+
+            }
+        });
+
+        listView = findViewById(R.id.listView);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataList);
+        listView.setAdapter(listViewAdapter);
+
+        // Spinner ni o'rnating va adapterga ulang
         spinner = findViewById(R.id.spinner);
         spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
 
-        // Birinchi elementni o'zgartirish uchun
-        updateSpinnerData(0);
+        if (spinner != null) {
+            spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    updateSpinnerData(position);
+                }
+            });
+        }
 
     }
-
 
     private List<String> generateData() {
         List<String> data = new ArrayList<>();
