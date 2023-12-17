@@ -44,11 +44,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:clickable="true"
-        android:descendantFocusability="blocksDescendants"
         android:dividerHeight="5dp"
         android:elevation="5dp"
         android:focusable="true"
-        android:headerDividersEnabled="true"
         android:paddingHorizontal="10dp"
         tools:listitem="@layout/place_item" />
 

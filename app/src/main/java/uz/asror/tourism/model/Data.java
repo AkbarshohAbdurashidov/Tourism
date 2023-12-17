@@ -1,5 +1,7 @@
 package uz.asror.tourism.model;
 
+import android.os.Parcel;
+
 public class Data {
 
     private String name;
@@ -17,6 +19,16 @@ public class Data {
         this.accommodationNearby = accommodationNearby;
         this.shopNearby = shopNearby;
     }
+
+    protected Data(Parcel in) {
+        name = in.readString();
+        picture = in.readInt();
+        description = in.readString();
+        weatherConditions = in.readString();
+        accommodationNearby = in.readString();
+        shopNearby = in.readString();
+    }
+
 
     public String getName() {
         return name;
@@ -57,7 +69,6 @@ public class Data {
     public void setAccommodationNearby(String accommodationNearby) {
         this.accommodationNearby = accommodationNearby;
     }
-
     public String getShopNearby() {
         return shopNearby;
     }
@@ -77,4 +88,5 @@ public class Data {
                 ", shopNearby='" + shopNearby + '\'' +
                 '}';
     }
+
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ArrayList<Data> placeData;
-    private ListView listView;
     private List<String> dataList;
 
 
@@ -32,32 +30,33 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadPlaces();
-        binding.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Menu is Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
         PlaceAdapter placeAdapter = new PlaceAdapter(this, placeData);
+        binding.listView.setAdapter(placeAdapter);
+//        binding.menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, "Menu is Clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                ArrayList<String> itemPosition = (ArrayList<String>) parent.getItemAtPosition(position);
-//                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
-//                intent.putExtra("data", itemPosition);
+//        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(MainActivity.this, "Listview bosildi!", Toast.LENGTH_SHORT).show();
+//                String itemPosition = (String) parent.getItemAtPosition(position);
+//                Intent intent = new Intent(getApplicationContext(), PlaceDetail.class);
+//                intent.putExtra("data1", itemPosition);
 //                startActivity(intent);
 //                finish();
-//                Log.d("ListviewBosilishi", "onItemClick: " + itemPosition);
-            }
-        });
-        binding.listView.setAdapter(placeAdapter);
+//
+//                Log.d("ListviewBosilishi", "onItemClick: " + "itemPosition");
+//            }
+//        });
     }
-
-
 
     private void loadPlaces() {
         placeData = new ArrayList<>();
+
 
         Data data1 = new Data("Samarkand", R.drawable.samarkand,
                 "Samarkand – Crossroad of Cultures” is the official moniker "
@@ -103,14 +102,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-
-        super.onBackPressed();
-    }
-
-
-
-
-    
 }

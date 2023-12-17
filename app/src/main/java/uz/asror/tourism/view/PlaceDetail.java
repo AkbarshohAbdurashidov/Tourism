@@ -37,7 +37,7 @@ public class PlaceDetail extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String gettingData = intent.getStringExtra("data");
+        String gettingData = intent.getStringExtra("data1");
 
         TextView placeName = findViewById(R.id.placeName);
         ImageView imageViewDetail = findViewById(R.id.imageViewDetail);
@@ -48,14 +48,12 @@ public class PlaceDetail extends AppCompatActivity {
 
 
         placeName.setText(gettingData);
-        imageViewDetail.setImageResource(Integer.parseInt(gettingData));
+//        imageViewDetail.setImageResource(gettingData);
         descriptionDetail.setText(gettingData);
         weatherConditions.setText(gettingData);
         accommodationNearby.setText(gettingData);
         shopNearby.setText(gettingData);
-
     }
-
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(PlaceDetail.this, MainActivity.class);

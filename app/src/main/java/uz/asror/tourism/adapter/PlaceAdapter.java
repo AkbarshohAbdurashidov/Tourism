@@ -47,9 +47,21 @@ public class PlaceAdapter extends ArrayAdapter<Data> {
             binding = PlaceItemBinding.inflate(LayoutInflater.from(context), parent, false);
             loadDistricts();
             loadPlaces();
+
+
         } else {
             binding = PlaceItemBinding.bind(convertView);
+
         }
+        binding.placeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PlaceDetail.class);
+                intent.putExtra("data", listData.get(position).toString());
+                context.startActivity(intent);
+            }
+        });
+
         binding.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,15 +86,6 @@ public class PlaceAdapter extends ArrayAdapter<Data> {
         binding.placeName.setText(data.getName());
         binding.placeImageView.setImageResource(data.getPicture());
 
-        binding.placeImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PlaceDetail.class);
-                intent.putExtra("data", listData.get(0).toString());
-                context.startActivity(intent);
-
-            }
-        });
         return binding.getRoot();
     }
 
