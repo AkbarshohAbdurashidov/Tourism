@@ -37,7 +37,7 @@ public class PlaceDetail extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        ArrayList<String> receivedDataList = intent.getStringArrayListExtra("data");
+        String gettingData = intent.getStringExtra("data");
 
         TextView placeName = findViewById(R.id.placeName);
         ImageView imageViewDetail = findViewById(R.id.imageViewDetail);
@@ -47,13 +47,12 @@ public class PlaceDetail extends AppCompatActivity {
         TextView shopNearby = findViewById(R.id.shopNearby);
 
 
-        int size = receivedDataList.size();
-        if (size >= 1) placeName.setText(receivedDataList.get(0));
-        if (size >= 2) imageViewDetail.setImageResource(Integer.parseInt(receivedDataList.get(1)));
-        if (size >= 3) descriptionDetail.setText(receivedDataList.get(2));
-        if (size >= 4) weatherConditions.setText(receivedDataList.get(3));
-        if (size >= 5) accommodationNearby.setText(receivedDataList.get(4));
-        if (size >= 6) shopNearby.setText(receivedDataList.get(5));
+        placeName.setText(gettingData);
+        imageViewDetail.setImageResource(Integer.parseInt(gettingData));
+        descriptionDetail.setText(gettingData);
+        weatherConditions.setText(gettingData);
+        accommodationNearby.setText(gettingData);
+        shopNearby.setText(gettingData);
 
     }
 

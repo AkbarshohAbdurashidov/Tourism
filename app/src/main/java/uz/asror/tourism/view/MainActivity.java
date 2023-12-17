@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<String> itemPosition = (ArrayList<String>) parent.getItemAtPosition(position);
-                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
-                intent.putExtra("data", itemPosition);
-                startActivity(intent);
-                finish();
-                Log.d("ListviewBosilishi", "onItemClick: " + itemPosition);
+//                ArrayList<String> itemPosition = (ArrayList<String>) parent.getItemAtPosition(position);
+//                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
+//                intent.putExtra("data", itemPosition);
+//                startActivity(intent);
+//                finish();
+//                Log.d("ListviewBosilishi", "onItemClick: " + itemPosition);
             }
         });
         binding.listView.setAdapter(placeAdapter);
@@ -77,7 +77,22 @@ public class MainActivity extends AppCompatActivity {
                 "Local Souvenir Shop");
         placeData.add(data1);
 
-        Data data2 = new Data("Bukhara", R.drawable.bukhara, "The historic center of Bukhara has been an important base for Islamic theology and science for several centuries.  Its well-preserved city center was recognized by UNESCO as an exemplary medieval city.  City-planning, urban, economic, and scientific development in Bukhara had a large impact on the Islamic World in the Middle Ages.  The earliest architectural monument is the tomb of Ismail Somoni dating back to the 10th century. For seven centuries up until the 16th century, it was the largest Islamic center for the study of Sufism with hundreds of mosques and madrasas or learning places.  World-renowned scholar Avicenna was born near Bukhara and grew up there.  While in Bukhara we’d recommend taking a stroll around the old city to savor its architectural legacy and imagine yourself bargaining as they would have done in medieval times.", "Partly Cloudy", "Park View Hotel", "Park Cafeteria");
+        Data data2 = new Data("Bukhara", R.drawable.bukhara,
+                "The historic center of Bukhara has been an important " +
+                        "base for Islamic theology and science for several centuries." +
+                        "  Its well-preserved city center was recognized by UNESCO as an " +
+                        "exemplary medieval city.  City-planning, urban, economic, and scientific" +
+                        " development in Bukhara had a large impact on the Islamic World in the Middle" +
+                        "Ages.  The earliest architectural monument is the tomb of Ismail Somoni dating" +
+                        " back to the 10th century. For seven centuries up until the 16th century, it was" +
+                        " the largest Islamic center for the study of Sufism with hundreds of mosques and" +
+                        " madrasas or learning places.  World-renowned scholar Avicenna was born near Bukhara " +
+                        "and grew up there.  While in Bukhara we’d recommend taking a stroll around the old city" +
+                        " to savor its architectural legacy and imagine yourself bargaining as they would have " +
+                        "done in medieval times.",
+                "Partly Cloudy",
+                "Park View Hotel",
+                "Park Cafeteria");
         placeData.add(data2);
 
         Data data3 = new Data("Khiva", R.drawable.khiva, "Khiva is the first UNESCO World Heritage site in Uzbekistan was inscribed in 1990 noting its importance in the exceptional heritage of ancient Silk Road traditions.  Itchan Kala, which literally translates as the inner part of the old city, is surrounded by thick mud walls.  It contains 51 monuments and is although around 250 households still make their home inside, it feels more like an open-air museum.  Looking down from Islam Khoja minaret or the city walls, it’s hard to imagine this is the 21st century.  It is here in Khiva that the scholar AI-Khoresmi, the father of algebra, was born and introduced algorithms to the world.  Take a guided tour to get to know the stories that feature in the history of this fascinating city.", "Clear Sky", "Bazaar Inn", "Spice Shop");
@@ -93,4 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onBackPressed();
     }
+
+
+
+
+    
 }
