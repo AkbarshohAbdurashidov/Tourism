@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
-                startActivity(intent);
+                Toast.makeText(MainActivity.this, "Menu is Clicked", Toast.LENGTH_SHORT).show();
             }
         });
         PlaceAdapter placeAdapter = new PlaceAdapter(this, placeData);
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
                 intent.putExtra("data", itemPosition);
                 startActivity(intent);
+                finish();
             }
         });
         binding.listView.setAdapter(placeAdapter);
@@ -83,5 +83,13 @@ public class MainActivity extends AppCompatActivity {
         Data data4 = new Data("Shahrisabz", R.drawable.shahrisabz, "This flourishing city of the Timurid Empire is the birthplace of the great medieval conqueror Amir Temur.  It has exceptional monuments from 14th to 15th centuries though its history dates back over 2000 years.  Its historic center retains the layout from the original Timurid city planning.  Amir Temur ordered the Ak Sarai – the white summer palace – to be built as well as his own grave. Tamerlane’s summer palace was one of the highlights of the Timurid architecture.  These days you can still see the remains of the palace’s 65 meter high monumental gates.", "Sunny", "Oasis Retreat", "Nomad's Tent");
         placeData.add(data4);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(MainActivity.this, PlaceDetail.class);
+        startActivity(i);
+        finish();
+        super.onBackPressed();
     }
 }
