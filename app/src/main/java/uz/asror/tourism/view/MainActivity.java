@@ -2,6 +2,7 @@ package uz.asror.tourism.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -42,15 +43,17 @@ public class MainActivity extends AppCompatActivity {
         binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemPosition = (String) parent.getItemAtPosition(position);
+                ArrayList<String> itemPosition = (ArrayList<String>) parent.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
                 intent.putExtra("data", itemPosition);
                 startActivity(intent);
                 finish();
+                Log.d("ListviewBosilishi", "onItemClick: " + itemPosition);
             }
         });
         binding.listView.setAdapter(placeAdapter);
     }
+
 
 
     private void loadPlaces() {
@@ -87,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(MainActivity.this, PlaceDetail.class);
-        startActivity(i);
-        finish();
+
         super.onBackPressed();
     }
 }

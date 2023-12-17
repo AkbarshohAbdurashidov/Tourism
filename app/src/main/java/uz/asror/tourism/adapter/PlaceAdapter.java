@@ -86,7 +86,8 @@ public class PlaceAdapter extends ArrayAdapter<Data> {
 
 
     }
-//   Samarqand
+
+    //   Samarqand
     private void showDistrictOptionsDialog1(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Selected Region: " + listData.get(position).getName());
