@@ -32,12 +32,13 @@
                 android:textStyle="bold" />
 
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="150dp"
+            <ImageButton
+                android:id="@+id/moreBtn"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:src="@drawable/more_ic"
                 android:background="@drawable/spinner_back" />
 
         </LinearLayout>
@@ -48,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/samarkand"
             app:layout_constraintTop_toBottomOf="@id/LinearLayout" />
 
 

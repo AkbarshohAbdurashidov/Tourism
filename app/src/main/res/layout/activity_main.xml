@@ -11,10 +11,11 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="#B3FFFFFF">
 
 
         <ImageView
+            android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/menu_ic" />
@@ -39,12 +40,15 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
+        android:clickable="true"
         android:dividerHeight="5dp"
-        android:elevation="10dp"
+        android:elevation="5dp"
+        android:focusable="true"
         android:headerDividersEnabled="true"
-        android:paddingHorizontal="10dp" />
+        android:paddingHorizontal="10dp"
+        tools:listitem="@layout/place_item" />
 
 </LinearLayout>

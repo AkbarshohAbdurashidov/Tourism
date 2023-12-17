@@ -18,10 +18,6 @@ public class Data {
         this.shopNearby = shopNearby;
     }
 
-    public Data(Data data) {
-
-    }
-
     public String getName() {
         return name;
     }
@@ -74,7 +70,7 @@ public class Data {
     public String toString() {
         return "Data{" +
                 "name='" + name + '\'' +
-                ", picture='" + picture + '\'' +
+                ", picture=" + picture +
                 ", description='" + description + '\'' +
                 ", weatherConditions='" + weatherConditions + '\'' +
                 ", accommodationNearby='" + accommodationNearby + '\'' +

@@ -1,36 +1,29 @@
 package uz.asror.tourism.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import uz.asror.tourism.R;
 import uz.asror.tourism.adapter.PlaceAdapter;
 import uz.asror.tourism.databinding.ActivityMainBinding;
 import uz.asror.tourism.model.Data;
-import uz.asror.tourism.model.District;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ArrayList<Data> placeData;
     private ListView listView;
-    private Spinner spinner;
-    private ArrayAdapter<String> spinnerAdapter;
     private List<String> dataList;
-    private HashMap<String, List<String>> regionDistrictMap;
-    private HashMap<Integer, List<String>> spinnerDataMap;
 
-    List<District> districts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,100 +31,25 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadPlaces();
-        dataList =  generateData();
-        spinnerDataMap = generateSpinnerData();
-
-
-        // Set up ArrayAdapter for the region ListView
-        ArrayAdapter<String> regionListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(regionDistrictMap.keySet()));
-        binding.listView.setAdapter(regionListAdapter);
+        binding.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
+                startActivity(intent);
+            }
+        });
         PlaceAdapter placeAdapter = new PlaceAdapter(this, placeData);
-        binding.listView.setAdapter(placeAdapter);
+
         binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                placeAdapter.getItem(position);
-
-
+                String itemPosition = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
+                intent.putExtra("data", itemPosition);
+                startActivity(intent);
             }
         });
-
-        listView = findViewById(R.id.listView);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataList);
-        listView.setAdapter(listViewAdapter);
-
-        // Spinner ni o'rnating va adapterga ulang
-        spinner = findViewById(R.id.spinner);
-        spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
-
-        if (spinner != null) {
-            spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    updateSpinnerData(position);
-                }
-            });
-        }
-
-    }
-
-    private List<String> generateData() {
-        List<String> data = new ArrayList<>();
-        // Sample data
-        List<String> districts1 = new ArrayList<>();
-        districts1.add("District 1");
-        districts1.add("District 2");
-        districts1.add("District 3");
-
-        List<String> districts2 = new ArrayList<>();
-        districts2.add("District 4");
-        districts2.add("District 5");
-        districts2.add("District 6");
-
-        List<String> districts3 = new ArrayList<>();
-        districts3.add("District 7");
-        districts3.add("District 8");
-        districts3.add("District 9");
-
-        List<String> districts4 = new ArrayList<>();
-        districts4.add("District 10");
-        districts4.add("District 11");
-        districts4.add("District 12");
-
-        regionDistrictMap.put("Region 1", districts1);
-        regionDistrictMap.put("Region 2", districts2);
-        regionDistrictMap.put("Region 3", districts3);
-        regionDistrictMap.put("Region 4", districts4);
-        return data;
-    }
-
-    private HashMap<Integer, List<String>> generateSpinnerData() {
-        // Har bir ListView elementi uchun Spinner malumotlarini generatsiya qilish
-        // Sizning loyihangizga qarab malumotlarni o'zgartiring
-        HashMap<Integer, List<String>> map = new HashMap<>();
-        map.put(0, generateSpinnerDataForItem(1));
-        map.put(1, generateSpinnerDataForItem(2));
-        map.put(2, generateSpinnerDataForItem(3));
-        map.put(3, generateSpinnerDataForItem(4));
-        return map;
-    }
-
-    private List<String> generateSpinnerDataForItem(int itemNumber) {
-        // Har bir element uchun Spinner malumotlarni generatsiya qilish
-        List<String> spinnerData = new ArrayList<>();
-        spinnerData.add("Spinner Item " + itemNumber + " - 1");
-        spinnerData.add("Spinner Item " + itemNumber + " - 2");
-        spinnerData.add("Spinner Item " + itemNumber + " - 3");
-        return spinnerData;
-    }
-
-    private void updateSpinnerData(int position) {
-        // Spinner malumotlarini o'zgartirish
-        List<String> spinnerData = spinnerDataMap.get(position);
-        spinnerAdapter.clear();
-        spinnerAdapter.addAll(spinnerData);
+        binding.listView.setAdapter(placeAdapter);
     }
 
 
@@ -166,22 +84,4 @@ public class MainActivity extends AppCompatActivity {
         placeData.add(data4);
 
     }
-
-//    private void loadDistricts() {
-//        districts = new ArrayList<>();
-//
-//        District district1 = new District("Yunusobod", "Uch Tepa");
-//        districts.add(district1);
-//
-//        District district2 = new District("bukhara 1", "bukhara 2");
-//        districts.add(district2);
-//
-//        District district3 = new District("khiva 1", "khiva 2");
-//        districts.add(district3);
-//
-//        District district4 = new District("Shahrisabz 1", "Shahrisabz 2");
-//        districts.add(district4);
-//    }
-
-
 }
