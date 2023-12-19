@@ -50,4 +50,5 @@
         android:paddingHorizontal="10dp"
         tools:listitem="@layout/place_item" />
 
+
 </LinearLayout>

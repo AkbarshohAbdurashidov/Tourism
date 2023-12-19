@@ -1,8 +1,17 @@
 package uz.asror.tourism.model;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Data {
+import androidx.annotation.NonNull;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Data  implements Serializable {
 
     private String name;
     private int picture;
@@ -27,6 +36,26 @@ public class Data {
         weatherConditions = in.readString();
         accommodationNearby = in.readString();
         shopNearby = in.readString();
+    }
+
+    // Custom serialization method
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeObject(name);
+        out.writeInt(picture);
+        out.writeObject(description);
+        out.writeObject(weatherConditions);
+        out.writeObject(accommodationNearby);
+        out.writeObject(shopNearby);
+    }
+
+    // Custom deserialization method
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        name = (String) in.readObject();
+        picture = in.readInt();
+        description = (String) in.readObject();
+        weatherConditions = (String) in.readObject();
+        accommodationNearby = (String) in.readObject();
+        shopNearby = (String) in.readObject();
     }
 
 
@@ -88,5 +117,7 @@ public class Data {
                 ", shopNearby='" + shopNearby + '\'' +
                 '}';
     }
+
+
 
 }
