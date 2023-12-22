@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                         + "to miss Registan square, the Bibi Khanum and Gur Emir Mausoleums, the Shah-i-Zinda "
                         + "complex, Afrosiab  & the Ulughbek Observatory.",
                 "Sunny",
-                "Super Market",
-                "Local Souvenir Shop");
+                "Shangi Sharq   ",
+                "", "", "");
         placeData.add(data1);
 
         Data data2 = new Data("Bukhara", R.drawable.bukhara,
@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity {
                         " to savor its architectural legacy and imagine yourself bargaining as they would have " +
                         "done in medieval times.",
                 "Partly Cloudy",
-                "Park View Hotel",
-                "Park Cafeteria");
+                "Savitskiy Plaza",
+                "Continental Hotel", "Local Market", "Korzinka");
         placeData.add(data2);
 
-        Data data3 = new Data("Xorazm", R.drawable.khiva, "Xorazm is the first UNESCO World Heritage site in Uzbekistan was inscribed in 1990 noting its importance in the exceptional heritage of ancient Silk Road traditions.  Itchan Kala, which literally translates as the inner part of the old city, is surrounded by thick mud walls.  It contains 51 monuments and is although around 250 households still make their home inside, it feels more like an open-air museum.  Looking down from Islam Khoja minaret or the city walls, it’s hard to imagine this is the 21st century.  It is here in Khiva that the scholar AI-Khoresmi, the father of algebra, was born and introduced algorithms to the world.  Take a guided tour to get to know the stories that feature in the history of this fascinating city.", "Clear Sky", "Bazaar Inn", "Spice Shop");
+        Data data3 = new Data("Xorazm", R.drawable.khiva, "Xorazm is the first UNESCO World Heritage site in Uzbekistan was inscribed in 1990 noting its importance in the exceptional heritage of ancient Silk Road traditions.  Itchan Kala, which literally translates as the inner part of the old city, is surrounded by thick mud walls.  It contains 51 monuments and is although around 250 households still make their home inside, it feels more like an open-air museum.  Looking down from Islam Khoja minaret or the city walls, it’s hard to imagine this is the 21st century.  It is here in Khiva that the scholar AI-Khoresmi, the father of algebra, was born and introduced algorithms to the world.  Take a guided tour to get to know the stories that feature in the history of this fascinating city.", "Clear Sky", "Bazaar Inn", "Spice Shop", "shop1 ", "shop");
         placeData.add(data3);
 
-        Data data4 = new Data("Shahrisabz", R.drawable.shahrisabz, "This flourishing city of the Timurid Empire is the birthplace of the great medieval conqueror Amir Temur.  It has exceptional monuments from 14th to 15th centuries though its history dates back over 2000 years.  Its historic center retains the layout from the original Timurid city planning.  Amir Temur ordered the Ak Sarai – the white summer palace – to be built as well as his own grave. Tamerlane’s summer palace was one of the highlights of the Timurid architecture.  These days you can still see the remains of the palace’s 65 meter high monumental gates.", "Sunny", "Oasis Retreat", "Nomad's Tent");
+        Data data4 = new Data("Shahrisabz", R.drawable.shahrisabz, "This flourishing city of the Timurid Empire is the birthplace of the great medieval conqueror Amir Temur.  It has exceptional monuments from 14th to 15th centuries though its history dates back over 2000 years.  Its historic center retains the layout from the original Timurid city planning.  Amir Temur ordered the Ak Sarai – the white summer palace – to be built as well as his own grave. Tamerlane’s summer palace was one of the highlights of the Timurid architecture.  These days you can still see the remains of the palace’s 65 meter high monumental gates.", "Sunny", "Oasis Retreat", "Nomad's Tent", "shop 1", "shop 2");
         placeData.add(data4);
 
 
@@ -93,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("description", placeData.get(position).getDescription());
                 intent.putExtra("weather", placeData.get(position).getWeatherConditions());
                 intent.putExtra("accommodationNearby", placeData.get(position).getAccommodationNearby());
+                intent.putExtra("accommodationNearby1", placeData.get(position).getAccommodationNearby1());
                 intent.putExtra("shopNearby", placeData.get(position).getShopNearby());
+                intent.putExtra("shopNearby1", placeData.get(position).getShopNearby1());
 
                 startActivity(intent);
                 Log.i("ListviewBosilishi", "onItemClick: " + placeData.get(position));

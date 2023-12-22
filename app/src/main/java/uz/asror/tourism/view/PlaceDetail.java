@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import uz.asror.tourism.R;
 import uz.asror.tourism.databinding.ActivityPlaceDetailBinding;
+import uz.asror.tourism.fragments.AccommodationNearbyFragment;
 import uz.asror.tourism.model.Data;
 
 public class PlaceDetail extends AppCompatActivity {
@@ -44,29 +45,37 @@ public class PlaceDetail extends AppCompatActivity {
         String description = intent.getStringExtra("description");
         String weather = intent.getStringExtra("weather");
         String accommodation = intent.getStringExtra("accommodationNearby");
+        String accommodation1 = intent.getStringExtra("accommodationNearby1");
         String shops = intent.getStringExtra("shopNearby");
+        String shops1 = intent.getStringExtra("shopNearby1");
 
         TextView placeName = findViewById(R.id.placeName);
         ImageView imageView = findViewById(R.id.placeImageDetail);
         TextView descriptionDetail = findViewById(R.id.descriptionDetail);
         TextView weatherConditions = findViewById(R.id.weatherConditions);
         TextView accommodationNearby = findViewById(R.id.accommodationNearby);
+        TextView accommodationNearby1 = findViewById(R.id.accommodationNearby2);
         TextView shopNearby = findViewById(R.id.shopNearby);
+        TextView shopNearby1 = findViewById(R.id.shopNearby2);
 
         placeName.setText(name);
         Glide.with(this).load(picture).into(imageView);
-
         descriptionDetail.setText(description);
         weatherConditions.setText(weather);
         accommodationNearby.setText(accommodation);
+        accommodationNearby1.setText(accommodation1);
         shopNearby.setText(shops);
+        shopNearby1.setText(shops1);
+
+        accommodationNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(PlaceDetail.this, AccommodationNearbyFragment.class);
+                startActivity(intent1);
+            }
+        });
+
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(PlaceDetail.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-        super.onBackPressed();
-    }
+
 }

@@ -1,63 +1,33 @@
 package uz.asror.tourism.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Data  implements Serializable {
+public class Data implements Serializable {
 
     private String name;
     private int picture;
     private String description;
     private String weatherConditions;
     private String accommodationNearby;
+    private String accommodationNearby1;
     private String shopNearby;
+    private String shopNearby1;
 
-    public Data(String name, int picture, String description, String weatherConditions, String accommodationNearby, String shopNearby) {
+    public Data(String name, int picture, String description, String weatherConditions, String accommodationNearby, String accommodationNearby1, String shopNearby, String shopNearby1) {
         this.name = name;
         this.picture = picture;
         this.description = description;
         this.weatherConditions = weatherConditions;
         this.accommodationNearby = accommodationNearby;
+        this.accommodationNearby1 = accommodationNearby1;
         this.shopNearby = shopNearby;
+        this.shopNearby1 = shopNearby1;
     }
-
-    protected Data(Parcel in) {
-        name = in.readString();
-        picture = in.readInt();
-        description = in.readString();
-        weatherConditions = in.readString();
-        accommodationNearby = in.readString();
-        shopNearby = in.readString();
-    }
-
-    // Custom serialization method
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeObject(name);
-        out.writeInt(picture);
-        out.writeObject(description);
-        out.writeObject(weatherConditions);
-        out.writeObject(accommodationNearby);
-        out.writeObject(shopNearby);
-    }
-
-    // Custom deserialization method
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        name = (String) in.readObject();
-        picture = in.readInt();
-        description = (String) in.readObject();
-        weatherConditions = (String) in.readObject();
-        accommodationNearby = (String) in.readObject();
-        shopNearby = (String) in.readObject();
-    }
-
 
     public String getName() {
         return name;
@@ -98,12 +68,29 @@ public class Data  implements Serializable {
     public void setAccommodationNearby(String accommodationNearby) {
         this.accommodationNearby = accommodationNearby;
     }
+
+    public String getAccommodationNearby1() {
+        return accommodationNearby1;
+    }
+
+    public void setAccommodationNearby1(String accommodationNearby1) {
+        this.accommodationNearby1 = accommodationNearby1;
+    }
+
     public String getShopNearby() {
         return shopNearby;
     }
 
     public void setShopNearby(String shopNearby) {
         this.shopNearby = shopNearby;
+    }
+
+    public String getShopNearby1() {
+        return shopNearby1;
+    }
+
+    public void setShopNearby1(String shopNearby1) {
+        this.shopNearby1 = shopNearby1;
     }
 
     @Override
@@ -114,10 +101,9 @@ public class Data  implements Serializable {
                 ", description='" + description + '\'' +
                 ", weatherConditions='" + weatherConditions + '\'' +
                 ", accommodationNearby='" + accommodationNearby + '\'' +
+                ", accommodationNearby1='" + accommodationNearby1 + '\'' +
                 ", shopNearby='" + shopNearby + '\'' +
+                ", shopNearby1='" + shopNearby1 + '\'' +
                 '}';
     }
-
-
-
 }
